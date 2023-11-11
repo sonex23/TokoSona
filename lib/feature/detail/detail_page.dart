@@ -68,7 +68,7 @@ class DetailPage extends StatelessWidget {
                     color: Color.fromARGB(255, 255, 230, 0),
                   ),
                   Text(
-                    product.rating.rate.toString(),
+                    product.rating.toString(),
                     style: CustomTextStyle.body1TextStyle,
                   )
                 ],

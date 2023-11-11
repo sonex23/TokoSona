@@ -3,13 +3,20 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:toko_sona/core/service/service_locator.dart';
+import 'package:toko_sona/feature/home/product/product_viewparam.dart';
 import 'package:toko_sona/misc/router/router.dart';
 import 'package:toko_sona/misc/utils/app_bloc_observer.dart';
 import 'package:toko_sona/misc/utils/palette.dart';
 
 void main() async {
-  runZoned(() {
+  runZoned(() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Hive.initFlutter();
+    Hive.registerAdapter(ProductAdapter());
+    await Hive.openBox('product_box');
+
     setUpServices();
     Bloc.observer = AppBlocObserver();
     runApp(const TokoSonaApp());

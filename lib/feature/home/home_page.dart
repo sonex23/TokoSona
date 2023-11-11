@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
+import 'package:logger/logger.dart';
+import 'package:toko_sona/core/service/hive_client.dart';
 import 'package:toko_sona/core/service/service_locator.dart';
 import 'package:toko_sona/feature/home/category/category_cubit.dart';
 import 'package:toko_sona/feature/home/home_repository.dart';
@@ -38,6 +41,7 @@ class HomePageView extends StatefulWidget {
 }
 
 class _HomePageViewState extends State<HomePageView> {
+  Logger logger = Logger();
   @override
   void initState() {
     super.initState();
@@ -133,6 +137,8 @@ class _HomePageViewState extends State<HomePageView> {
               BlocBuilder<ProductCubit, ProductState>(
                 builder: (context, state) {
                   if (state.isLoadedState) {
+                    HiveClient hiveClient = HiveClient();
+                    hiveClient.getByKeyAndBox(key: 'products', box: 'product_box').then((value) => logger.d(value));
                     return ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,

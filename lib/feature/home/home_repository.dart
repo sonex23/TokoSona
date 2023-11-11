@@ -1,13 +1,16 @@
 import 'package:dio/dio.dart';
+import 'package:hive/hive.dart';
 import 'package:toko_sona/core/networking/rest_client.dart';
 import 'package:toko_sona/core/networking/result.dart';
+import 'package:toko_sona/core/service/hive_client.dart';
 import 'package:toko_sona/feature/home/home_repository_contract.dart';
 import 'package:toko_sona/feature/home/product/product_entity.dart';
 import 'package:toko_sona/feature/home/product/product_viewparam.dart';
 
 class HomeRepository extends HomeRepositoryContract {
   final RestClient restClient;
-  HomeRepository(this.restClient);
+  final HiveClient hiveClient;
+  HomeRepository({required this.restClient, required this.hiveClient});
 
   @override
   Future<Result<List<ProductViewparam>>> getAllProducts() async {
@@ -17,6 +20,11 @@ class HomeRepository extends HomeRepositoryContract {
       for (var entity in resultEntity) {
         productList.add(ProductViewparam.fromEntity(entity));
       }
+      hiveClient.saveByKeyAndBox(
+        key: 'products',
+        box: 'product_box',
+        adapter: productList,
+      );
       return Result.data(productList);
     } on DioException catch (e) {
       return Result.error(e.message);

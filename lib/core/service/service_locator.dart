@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:toko_sona/core/networking/rest_client.dart';
+import 'package:toko_sona/core/service/hive_client.dart';
 import 'package:toko_sona/feature/home/home_repository.dart';
 import 'package:toko_sona/misc/router/router.dart';
 import 'package:dio/dio.dart';
@@ -19,5 +20,6 @@ void setUpServices() async {
       ),
     )
     ..registerLazySingleton(() => RestClient(app<Dio>()))
-    ..registerLazySingleton(() => HomeRepository(app<RestClient>()));
+    ..registerLazySingleton(() => HomeRepository(restClient: app<RestClient>(), hiveClient: app<HiveClient>()))
+    ..registerLazySingleton(() => HiveClient());
 }

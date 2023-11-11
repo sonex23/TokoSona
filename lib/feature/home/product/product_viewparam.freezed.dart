@@ -20,13 +20,20 @@ ProductViewparam _$ProductViewparamFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProductViewparam {
+  @HiveField(0)
   int get id => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get title => throw _privateConstructorUsedError;
+  @HiveField(2)
   double get price => throw _privateConstructorUsedError;
+  @HiveField(3)
   String get description => throw _privateConstructorUsedError;
+  @HiveField(4)
   String get category => throw _privateConstructorUsedError;
+  @HiveField(5)
   String get image => throw _privateConstructorUsedError;
-  Rating get rating => throw _privateConstructorUsedError;
+  @HiveField(6)
+  double get rating => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,15 +48,13 @@ abstract class $ProductViewparamCopyWith<$Res> {
       _$ProductViewparamCopyWithImpl<$Res, ProductViewparam>;
   @useResult
   $Res call(
-      {int id,
-      String title,
-      double price,
-      String description,
-      String category,
-      String image,
-      Rating rating});
-
-  $RatingCopyWith<$Res> get rating;
+      {@HiveField(0) int id,
+      @HiveField(1) String title,
+      @HiveField(2) double price,
+      @HiveField(3) String description,
+      @HiveField(4) String category,
+      @HiveField(5) String image,
+      @HiveField(6) double rating});
 }
 
 /// @nodoc
@@ -101,16 +106,8 @@ class _$ProductViewparamCopyWithImpl<$Res, $Val extends ProductViewparam>
       rating: null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as Rating,
+              as double,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $RatingCopyWith<$Res> get rating {
-    return $RatingCopyWith<$Res>(_value.rating, (value) {
-      return _then(_value.copyWith(rating: value) as $Val);
-    });
   }
 }
 
@@ -123,16 +120,13 @@ abstract class _$$ProductViewparamImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      String title,
-      double price,
-      String description,
-      String category,
-      String image,
-      Rating rating});
-
-  @override
-  $RatingCopyWith<$Res> get rating;
+      {@HiveField(0) int id,
+      @HiveField(1) String title,
+      @HiveField(2) double price,
+      @HiveField(3) String description,
+      @HiveField(4) String category,
+      @HiveField(5) String image,
+      @HiveField(6) double rating});
 }
 
 /// @nodoc
@@ -182,40 +176,49 @@ class __$$ProductViewparamImplCopyWithImpl<$Res>
       rating: null == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as Rating,
+              as double,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ProductViewparamImpl implements _ProductViewparam {
-  const _$ProductViewparamImpl(
-      {required this.id,
-      required this.title,
-      required this.price,
-      required this.description,
-      required this.category,
-      required this.image,
-      required this.rating});
+@HiveType(typeId: 0, adapterName: 'ProductAdapter')
+class _$ProductViewparamImpl extends _ProductViewparam {
+  _$ProductViewparamImpl(
+      {@HiveField(0) required this.id,
+      @HiveField(1) required this.title,
+      @HiveField(2) required this.price,
+      @HiveField(3) required this.description,
+      @HiveField(4) required this.category,
+      @HiveField(5) required this.image,
+      @HiveField(6) required this.rating})
+      : super._();
 
   factory _$ProductViewparamImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductViewparamImplFromJson(json);
 
   @override
+  @HiveField(0)
   final int id;
   @override
+  @HiveField(1)
   final String title;
   @override
+  @HiveField(2)
   final double price;
   @override
+  @HiveField(3)
   final String description;
   @override
+  @HiveField(4)
   final String category;
   @override
+  @HiveField(5)
   final String image;
   @override
-  final Rating rating;
+  @HiveField(6)
+  final double rating;
 
   @override
   String toString() {
@@ -258,33 +261,41 @@ class _$ProductViewparamImpl implements _ProductViewparam {
   }
 }
 
-abstract class _ProductViewparam implements ProductViewparam {
-  const factory _ProductViewparam(
-      {required final int id,
-      required final String title,
-      required final double price,
-      required final String description,
-      required final String category,
-      required final String image,
-      required final Rating rating}) = _$ProductViewparamImpl;
+abstract class _ProductViewparam extends ProductViewparam {
+  factory _ProductViewparam(
+      {@HiveField(0) required final int id,
+      @HiveField(1) required final String title,
+      @HiveField(2) required final double price,
+      @HiveField(3) required final String description,
+      @HiveField(4) required final String category,
+      @HiveField(5) required final String image,
+      @HiveField(6) required final double rating}) = _$ProductViewparamImpl;
+  _ProductViewparam._() : super._();
 
   factory _ProductViewparam.fromJson(Map<String, dynamic> json) =
       _$ProductViewparamImpl.fromJson;
 
   @override
+  @HiveField(0)
   int get id;
   @override
+  @HiveField(1)
   String get title;
   @override
+  @HiveField(2)
   double get price;
   @override
+  @HiveField(3)
   String get description;
   @override
+  @HiveField(4)
   String get category;
   @override
+  @HiveField(5)
   String get image;
   @override
-  Rating get rating;
+  @HiveField(6)
+  double get rating;
   @override
   @JsonKey(ignore: true)
   _$$ProductViewparamImplCopyWith<_$ProductViewparamImpl> get copyWith =>
