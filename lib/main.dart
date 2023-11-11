@@ -1,12 +1,19 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:toko_sona/core/service/service_locator.dart';
 import 'package:toko_sona/misc/router/router.dart';
+import 'package:toko_sona/misc/utils/app_bloc_observer.dart';
 import 'package:toko_sona/misc/utils/palette.dart';
 
 void main() async {
-  setUpServices();
-  runApp(const TokoSonaApp());
+  runZoned(() {
+    setUpServices();
+    Bloc.observer = AppBlocObserver();
+    runApp(const TokoSonaApp());
+  });
 }
 
 class TokoSonaApp extends StatelessWidget {
@@ -23,7 +30,7 @@ class TokoSonaApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         fontFamily: 'Poppins',
         useMaterial3: true,
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           color: Palette.primaryColor,
         ),
       ),
