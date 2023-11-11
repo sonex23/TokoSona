@@ -10,7 +10,7 @@ class ProductCubit extends Cubit<ProductState> {
   final HomeRepositoryContract homeRepository;
   ProductCubit(this.homeRepository) : super(const ProductState.initial());
 
-  void getAllProduct() async {
+  void getAllProducts() async {
     emit(const ProductState.loading());
     try {
       Result productList = await homeRepository.getAllProducts();

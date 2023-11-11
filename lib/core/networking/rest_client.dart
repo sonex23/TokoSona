@@ -9,5 +9,8 @@ abstract class RestClient {
   factory RestClient(Dio dio) = _RestClient;
 
   @GET('/products')
-  Future<List<ProductEntity>> getAllProduct();
+  Future<List<ProductEntity>> getAllProducts();
+
+  @GET('/products/categories')
+  Future<List<String>> getAllCategories();
 }

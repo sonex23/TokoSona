@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+ProductViewparam _$ProductViewparamFromJson(Map<String, dynamic> json) {
+  return _ProductViewparam.fromJson(json);
+}
+
 /// @nodoc
 mixin _$ProductViewparam {
   int get id => throw _privateConstructorUsedError;
@@ -24,6 +28,7 @@ mixin _$ProductViewparam {
   String get image => throw _privateConstructorUsedError;
   Rating get rating => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ProductViewparamCopyWith<ProductViewparam> get copyWith =>
       throw _privateConstructorUsedError;
@@ -183,7 +188,7 @@ class __$$ProductViewparamImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$ProductViewparamImpl implements _ProductViewparam {
   const _$ProductViewparamImpl(
       {required this.id,
@@ -193,6 +198,9 @@ class _$ProductViewparamImpl implements _ProductViewparam {
       required this.category,
       required this.image,
       required this.rating});
+
+  factory _$ProductViewparamImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProductViewparamImplFromJson(json);
 
   @override
   final int id;
@@ -230,6 +238,7 @@ class _$ProductViewparamImpl implements _ProductViewparam {
             (identical(other.rating, rating) || other.rating == rating));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, id, title, price, description, category, image, rating);
@@ -240,6 +249,13 @@ class _$ProductViewparamImpl implements _ProductViewparam {
   _$$ProductViewparamImplCopyWith<_$ProductViewparamImpl> get copyWith =>
       __$$ProductViewparamImplCopyWithImpl<_$ProductViewparamImpl>(
           this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ProductViewparamImplToJson(
+      this,
+    );
+  }
 }
 
 abstract class _ProductViewparam implements ProductViewparam {
@@ -251,6 +267,9 @@ abstract class _ProductViewparam implements ProductViewparam {
       required final String category,
       required final String image,
       required final Rating rating}) = _$ProductViewparamImpl;
+
+  factory _ProductViewparam.fromJson(Map<String, dynamic> json) =
+      _$ProductViewparamImpl.fromJson;
 
   @override
   int get id;

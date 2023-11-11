@@ -13,11 +13,25 @@ class HomeRepository extends HomeRepositoryContract {
   Future<Result<List<ProductViewparam>>> getAllProducts() async {
     List<ProductViewparam> productList = [];
     try {
-      List<ProductEntity> resultEntity = await restClient.getAllProduct();
+      List<ProductEntity> resultEntity = await restClient.getAllProducts();
       for (var entity in resultEntity) {
         productList.add(ProductViewparam.fromEntity(entity));
       }
       return Result.data(productList);
+    } on DioException catch (e) {
+      return Result.error(e.message);
+    }
+  }
+
+  @override
+  Future<Result<List<String>>> getAllCategories() async {
+    List<String> categories = [];
+    try {
+      List<String> resultEntity = await restClient.getAllCategories();
+      for (var entity in resultEntity) {
+        categories.add(entity);
+      }
+      return Result.data(categories);
     } on DioException catch (e) {
       return Result.error(e.message);
     }

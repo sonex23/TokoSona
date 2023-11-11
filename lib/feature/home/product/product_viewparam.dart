@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:toko_sona/feature/home/product/product_entity.dart';
 
 part 'product_viewparam.freezed.dart';
+part 'product_viewparam.g.dart';
 
 @freezed
 class ProductViewparam with _$ProductViewparam {
@@ -14,6 +15,8 @@ class ProductViewparam with _$ProductViewparam {
     required String image,
     required Rating rating,
   }) = _ProductViewparam;
+
+  factory ProductViewparam.fromJson(Map<String, dynamic> json) => _$ProductViewparamFromJson(json);
 
   factory ProductViewparam.fromEntity(ProductEntity entity) => ProductViewparam(
         id: entity.id ?? 0,
