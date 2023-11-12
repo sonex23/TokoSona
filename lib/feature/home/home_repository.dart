@@ -6,6 +6,7 @@ import 'package:toko_sona/core/service/hive_client.dart';
 import 'package:toko_sona/feature/home/home_repository_contract.dart';
 import 'package:toko_sona/feature/home/product/product_entity.dart';
 import 'package:toko_sona/feature/home/product/product_viewparam.dart';
+import 'package:toko_sona/misc/utils/hive_constant.dart';
 
 class HomeRepository extends HomeRepositoryContract {
   final RestClient restClient;
@@ -21,9 +22,9 @@ class HomeRepository extends HomeRepositoryContract {
         productList.add(ProductViewparam.fromEntity(entity));
       }
       hiveClient.saveByKeyAndBox(
-        key: 'products',
-        box: 'product_box',
-        adapter: productList,
+        key: HiveConstant.productKey,
+        box: HiveConstant.productBox,
+        value: productList,
       );
       return Result.data(productList);
     } on DioException catch (e) {

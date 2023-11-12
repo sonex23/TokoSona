@@ -14,4 +14,8 @@ class CustomTextStyle {
     fontSize: 18,
     fontWeight: FontWeight.w600,
   );
+  static const TextStyle smallTextStyle = TextStyle(
+    fontFamily: 'Poppins',
+    fontSize: 12,
+  );
 }

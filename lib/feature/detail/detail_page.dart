@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:toko_sona/core/service/hive_client.dart';
+import 'package:toko_sona/core/service/service_locator.dart';
 import 'package:toko_sona/feature/home/product/product_viewparam.dart';
 import 'package:toko_sona/misc/shared/textstyle.dart';
+import 'package:toko_sona/misc/utils/hive_constant.dart';
+import 'package:toko_sona/misc/utils/string_constant.dart';
 
 class DetailPage extends StatelessWidget {
   final ProductViewparam product;
@@ -15,7 +19,7 @@ class DetailPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Detail Page',
+          StringConstant.detailPage,
           style: CustomTextStyle.body1TextStyle.copyWith(color: Colors.white),
         ),
         leading: InkWell(
@@ -77,7 +81,7 @@ class DetailPage extends StatelessWidget {
                 height: 10,
               ),
               const Text(
-                'Description :',
+                StringConstant.description,
                 style: CustomTextStyle.body1TextStyle,
               ),
               const SizedBox(
@@ -86,6 +90,23 @@ class DetailPage extends StatelessWidget {
               Text(
                 product.description,
                 style: CustomTextStyle.body2TextStyle,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  await app<HiveClient>().saveByKeyAndBox(key: product.id.toString(), box: HiveConstant.cartBox, value: product).then((value) {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text(StringConstant.addedToCart),
+                      duration: Duration(seconds: 1),
+                    ));
+                  });
+                },
+                child: const Text(
+                  StringConstant.addToCart,
+                  style: CustomTextStyle.body1TextStyle,
+                ),
               ),
               const SizedBox(
                 height: 30,

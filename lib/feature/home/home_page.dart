@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive/hive.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:logger/logger.dart';
 import 'package:toko_sona/core/service/hive_client.dart';
 import 'package:toko_sona/core/service/service_locator.dart';
 import 'package:toko_sona/feature/home/category/category_cubit.dart';
 import 'package:toko_sona/feature/home/home_repository.dart';
 import 'package:toko_sona/feature/home/product/product_cubit.dart';
+import 'package:toko_sona/feature/home/product/product_viewparam.dart';
 import 'package:toko_sona/misc/shared/textstyle.dart';
+import 'package:toko_sona/misc/utils/hive_constant.dart';
 import 'package:toko_sona/misc/utils/palette.dart';
+import 'package:toko_sona/misc/utils/router_constant.dart';
 import 'package:toko_sona/misc/utils/string_constant.dart';
 import 'package:toko_sona/widget/category_card.dart';
 import 'package:toko_sona/widget/product_list_component.dart';
@@ -42,6 +46,7 @@ class HomePageView extends StatefulWidget {
 
 class _HomePageViewState extends State<HomePageView> {
   Logger logger = Logger();
+  TextEditingController searchTextController = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -56,7 +61,14 @@ class _HomePageViewState extends State<HomePageView> {
         title: ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: TextField(
-            onEditingComplete: () {},
+            controller: searchTextController,
+            onEditingComplete: () {
+              app<HiveClient>().getByKeyAndBox(key: HiveConstant.productKey, box: HiveConstant.productBox).then((value) {
+                List<ProductViewparam> listProduct = value as List<ProductViewparam>;
+                context.pushNamed(productRouteName,
+                    extra: listProduct.where((product) => product.title.toLowerCase().contains(searchTextController.text.toLowerCase())).toList());
+              });
+            },
             decoration: const InputDecoration(
               hintText: StringConstant.searchProduct,
               hintStyle: CustomTextStyle.body1TextStyle,
@@ -68,19 +80,61 @@ class _HomePageViewState extends State<HomePageView> {
             ),
           ),
         ),
-        actions: const [
-          Icon(
-            Icons.shopping_cart_rounded,
-            color: Colors.white,
-          ),
-          SizedBox(
-            width: 14,
-          ),
-          Icon(
-            Icons.person_2_rounded,
-            color: Colors.white,
-          ),
-          SizedBox(
+        actions: [
+          ValueListenableBuilder(
+              valueListenable: Hive.box(HiveConstant.cartBox).listenable(),
+              builder: (context, box, child) {
+                List<ProductViewparam> listProductInCart = List.from(box.values);
+                return InkWell(
+                  onTap: () {
+                    if (listProductInCart.isNotEmpty) {
+                      context.pushNamed(cartRouteName, extra: listProductInCart);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text(StringConstant.dontHaveProduct),
+                        duration: Duration(seconds: 2),
+                      ));
+                    }
+                  },
+                  child: SizedBox(
+                    width: 30,
+                    height: 30,
+                    child: Stack(
+                      // alignment: Alignment.center,
+                      children: [
+                        const Align(
+                          alignment: Alignment.center,
+                          child: Icon(
+                            Icons.shopping_cart_rounded,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Visibility(
+                          visible: listProductInCart.isNotEmpty,
+                          child: Align(
+                            alignment: Alignment.topRight,
+                            child: Container(
+                              // alignment: Alignment.center,
+                              padding: const EdgeInsets.all(2),
+                              decoration: const BoxDecoration(
+                                color: Colors.red,
+                                shape: BoxShape.circle,
+                              ),
+                              child: Text(
+                                listProductInCart.length.toString(),
+                                style: CustomTextStyle.smallTextStyle.copyWith(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              }),
+          const SizedBox(
             width: 14,
           ),
         ],
@@ -117,7 +171,7 @@ class _HomePageViewState extends State<HomePageView> {
                   } else {
                     return Center(
                       child: Text(
-                        state.errorMessage ?? 'Error',
+                        state.errorMessage ?? StringConstant.error,
                         style: CustomTextStyle.body1TextStyle,
                       ),
                     );
@@ -137,8 +191,6 @@ class _HomePageViewState extends State<HomePageView> {
               BlocBuilder<ProductCubit, ProductState>(
                 builder: (context, state) {
                   if (state.isLoadedState) {
-                    HiveClient hiveClient = HiveClient();
-                    hiveClient.getByKeyAndBox(key: 'products', box: 'product_box').then((value) => logger.d(value));
                     return ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
@@ -158,7 +210,7 @@ class _HomePageViewState extends State<HomePageView> {
                   } else {
                     return Center(
                       child: Text(
-                        state.errorMessage ?? 'Error',
+                        state.errorMessage ?? StringConstant.error,
                         style: CustomTextStyle.body1TextStyle,
                       ),
                     );
