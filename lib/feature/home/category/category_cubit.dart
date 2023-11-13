@@ -7,7 +7,7 @@ part 'category_cubit.freezed.dart';
 
 class CategoryCubit extends Cubit<CategoryState> {
   final HomeRepositoryContract homeRepository;
-  CategoryCubit(this.homeRepository) : super(const CategoryState.initial());
+  CategoryCubit(this.homeRepository) : super(const CategoryState.loading());
 
   void getAllCategories() async {
     emit(const CategoryState.loading());
@@ -26,7 +26,6 @@ class CategoryCubit extends Cubit<CategoryState> {
 
 @freezed
 class CategoryState with _$CategoryState {
-  const factory CategoryState.initial() = _InitialState;
   const factory CategoryState.loading() = _LoadingState;
   const factory CategoryState.loaded(List<String> categoryList) = _LoadedState;
   const factory CategoryState.error(String error) = _ErrorState;
@@ -34,7 +33,6 @@ class CategoryState with _$CategoryState {
 
 extension CategoryStateExtension on CategoryState {
   bool get isLoadingState => this is _LoadingState;
-  bool get isInitialState => this is _InitialState;
   bool get isErrorState => this is _ErrorState;
   bool get isLoadedState => this is _LoadedState;
   String? get errorMessage => mapOrNull(error: (value) => value.error);

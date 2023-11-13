@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:hive/hive.dart';
 import 'package:toko_sona/core/networking/rest_client.dart';
 import 'package:toko_sona/core/networking/result.dart';
 import 'package:toko_sona/core/service/hive_client.dart';

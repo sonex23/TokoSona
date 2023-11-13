@@ -8,7 +8,7 @@ part 'product_cubit.freezed.dart';
 
 class ProductCubit extends Cubit<ProductState> {
   final HomeRepositoryContract homeRepository;
-  ProductCubit(this.homeRepository) : super(const ProductState.initial());
+  ProductCubit(this.homeRepository) : super(const ProductState.loading());
 
   void getAllProducts() async {
     emit(const ProductState.loading());
@@ -27,7 +27,6 @@ class ProductCubit extends Cubit<ProductState> {
 
 @freezed
 class ProductState with _$ProductState {
-  const factory ProductState.initial() = _InitialState;
   const factory ProductState.loading() = _LoadingState;
   const factory ProductState.loaded(List<ProductViewparam> productList) = _LoadedState;
   const factory ProductState.error(String error) = _ErrorState;
@@ -35,7 +34,6 @@ class ProductState with _$ProductState {
 
 extension ProductStateExtension on ProductState {
   bool get isLoadingState => this is _LoadingState;
-  bool get isInitialState => this is _InitialState;
   bool get isErrorState => this is _ErrorState;
   bool get isLoadedState => this is _LoadedState;
   String? get errorMessage => mapOrNull(error: (value) => value.error);

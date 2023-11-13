@@ -15,6 +15,7 @@ class CategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      key: Key(category),
       onTap: () {
         app<HiveClient>().getByKeyAndBox(key: HiveConstant.productKey, box: HiveConstant.productBox).then((value) {
           List<ProductViewparam> listProduct = value as List<ProductViewparam>;

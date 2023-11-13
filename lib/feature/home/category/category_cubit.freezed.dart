@@ -18,7 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CategoryState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<String> categoryList) loaded,
     required TResult Function(String error) error,
@@ -26,7 +25,6 @@ mixin _$CategoryState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<String> categoryList)? loaded,
     TResult? Function(String error)? error,
@@ -34,7 +32,6 @@ mixin _$CategoryState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<String> categoryList)? loaded,
     TResult Function(String error)? error,
@@ -43,7 +40,6 @@ mixin _$CategoryState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InitialState value) initial,
     required TResult Function(_LoadingState value) loading,
     required TResult Function(_LoadedState value) loaded,
     required TResult Function(_ErrorState value) error,
@@ -51,7 +47,6 @@ mixin _$CategoryState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_InitialState value)? initial,
     TResult? Function(_LoadingState value)? loading,
     TResult? Function(_LoadedState value)? loaded,
     TResult? Function(_ErrorState value)? error,
@@ -59,7 +54,6 @@ mixin _$CategoryState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
     TResult Function(_LoadingState value)? loading,
     TResult Function(_LoadedState value)? loaded,
     TResult Function(_ErrorState value)? error,
@@ -84,120 +78,6 @@ class _$CategoryStateCopyWithImpl<$Res, $Val extends CategoryState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$InitialStateImplCopyWith<$Res> {
-  factory _$$InitialStateImplCopyWith(
-          _$InitialStateImpl value, $Res Function(_$InitialStateImpl) then) =
-      __$$InitialStateImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$InitialStateImplCopyWithImpl<$Res>
-    extends _$CategoryStateCopyWithImpl<$Res, _$InitialStateImpl>
-    implements _$$InitialStateImplCopyWith<$Res> {
-  __$$InitialStateImplCopyWithImpl(
-      _$InitialStateImpl _value, $Res Function(_$InitialStateImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$InitialStateImpl implements _InitialState {
-  const _$InitialStateImpl();
-
-  @override
-  String toString() {
-    return 'CategoryState.initial()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialStateImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<String> categoryList) loaded,
-    required TResult Function(String error) error,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<String> categoryList)? loaded,
-    TResult? Function(String error)? error,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<String> categoryList)? loaded,
-    TResult Function(String error)? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_InitialState value) initial,
-    required TResult Function(_LoadingState value) loading,
-    required TResult Function(_LoadedState value) loaded,
-    required TResult Function(_ErrorState value) error,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_InitialState value)? initial,
-    TResult? Function(_LoadingState value)? loading,
-    TResult? Function(_LoadedState value)? loaded,
-    TResult? Function(_ErrorState value)? error,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
-    TResult Function(_LoadingState value)? loading,
-    TResult Function(_LoadedState value)? loaded,
-    TResult Function(_ErrorState value)? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _InitialState implements CategoryState {
-  const factory _InitialState() = _$InitialStateImpl;
 }
 
 /// @nodoc
@@ -238,7 +118,6 @@ class _$LoadingStateImpl implements _LoadingState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<String> categoryList) loaded,
     required TResult Function(String error) error,
@@ -249,7 +128,6 @@ class _$LoadingStateImpl implements _LoadingState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<String> categoryList)? loaded,
     TResult? Function(String error)? error,
@@ -260,7 +138,6 @@ class _$LoadingStateImpl implements _LoadingState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<String> categoryList)? loaded,
     TResult Function(String error)? error,
@@ -275,7 +152,6 @@ class _$LoadingStateImpl implements _LoadingState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InitialState value) initial,
     required TResult Function(_LoadingState value) loading,
     required TResult Function(_LoadedState value) loaded,
     required TResult Function(_ErrorState value) error,
@@ -286,7 +162,6 @@ class _$LoadingStateImpl implements _LoadingState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_InitialState value)? initial,
     TResult? Function(_LoadingState value)? loading,
     TResult? Function(_LoadedState value)? loaded,
     TResult? Function(_ErrorState value)? error,
@@ -297,7 +172,6 @@ class _$LoadingStateImpl implements _LoadingState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
     TResult Function(_LoadingState value)? loading,
     TResult Function(_LoadedState value)? loaded,
     TResult Function(_ErrorState value)? error,
@@ -386,7 +260,6 @@ class _$LoadedStateImpl implements _LoadedState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<String> categoryList) loaded,
     required TResult Function(String error) error,
@@ -397,7 +270,6 @@ class _$LoadedStateImpl implements _LoadedState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<String> categoryList)? loaded,
     TResult? Function(String error)? error,
@@ -408,7 +280,6 @@ class _$LoadedStateImpl implements _LoadedState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<String> categoryList)? loaded,
     TResult Function(String error)? error,
@@ -423,7 +294,6 @@ class _$LoadedStateImpl implements _LoadedState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InitialState value) initial,
     required TResult Function(_LoadingState value) loading,
     required TResult Function(_LoadedState value) loaded,
     required TResult Function(_ErrorState value) error,
@@ -434,7 +304,6 @@ class _$LoadedStateImpl implements _LoadedState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_InitialState value)? initial,
     TResult? Function(_LoadingState value)? loading,
     TResult? Function(_LoadedState value)? loaded,
     TResult? Function(_ErrorState value)? error,
@@ -445,7 +314,6 @@ class _$LoadedStateImpl implements _LoadedState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
     TResult Function(_LoadingState value)? loading,
     TResult Function(_LoadedState value)? loaded,
     TResult Function(_ErrorState value)? error,
@@ -532,7 +400,6 @@ class _$ErrorStateImpl implements _ErrorState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<String> categoryList) loaded,
     required TResult Function(String error) error,
@@ -543,7 +410,6 @@ class _$ErrorStateImpl implements _ErrorState {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<String> categoryList)? loaded,
     TResult? Function(String error)? error,
@@ -554,7 +420,6 @@ class _$ErrorStateImpl implements _ErrorState {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<String> categoryList)? loaded,
     TResult Function(String error)? error,
@@ -569,7 +434,6 @@ class _$ErrorStateImpl implements _ErrorState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_InitialState value) initial,
     required TResult Function(_LoadingState value) loading,
     required TResult Function(_LoadedState value) loaded,
     required TResult Function(_ErrorState value) error,
@@ -580,7 +444,6 @@ class _$ErrorStateImpl implements _ErrorState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_InitialState value)? initial,
     TResult? Function(_LoadingState value)? loading,
     TResult? Function(_LoadedState value)? loaded,
     TResult? Function(_ErrorState value)? error,
@@ -591,7 +454,6 @@ class _$ErrorStateImpl implements _ErrorState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_InitialState value)? initial,
     TResult Function(_LoadingState value)? loading,
     TResult Function(_LoadedState value)? loaded,
     TResult Function(_ErrorState value)? error,

@@ -11,5 +11,5 @@ class StringConstant {
   static const String checkoutAllProducts = "Checkout all products";
   static const String addedToCart = "Added to Cart";
   static const String addToCart = "Add to Cart";
-  static const String dontHaveProduct = "You don't have any product to checkout";
+  static const String dontHaveProduct = "You don't have any product to in Cart";
 }
