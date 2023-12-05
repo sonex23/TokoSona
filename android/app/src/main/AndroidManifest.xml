@@ -2,7 +2,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:label="toko_sona"
+        android:label="Toko Sona"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

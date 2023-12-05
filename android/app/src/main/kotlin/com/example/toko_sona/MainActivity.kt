@@ -1,4 +1,4 @@
-package com.example.toko_sona
+package com.sonex23.toko_sona
 
 import io.flutter.embedding.android.FlutterActivity
 
